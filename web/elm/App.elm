@@ -7,6 +7,7 @@ import Phoenix.Push
 import Html exposing (Html, div, li, ul, text, form, input, button)
 import Html.App
 import Html.Events exposing (onInput, onSubmit)
+import Html.Attributes exposing (value)
 
 import Json.Encode as JsEncode
 import Json.Decode as JsDecode exposing ( (:=) )
@@ -66,8 +67,10 @@ view model =
     div [] [
       ul [] (model.messages |> drawMessages),
       form [ onSubmit SendMessage] [
-       input [ onInput SetMessage ] [
-       ],
+       input [ 
+         onInput SetMessage,
+         value model.messageInProgress
+       ] [],
        button [] [
          text "Submit"
        ]
